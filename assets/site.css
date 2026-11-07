@@ -27,8 +27,9 @@
   --page: 1180px;
 }
 
+/* Dark: follows the system unless the visitor picked a theme (data-theme). */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --paper: #0e0e0f;
     --paper-deep: #161618;
     --ink: #f5f4f0;
@@ -38,7 +39,21 @@
     --gold-text: #dcbf7e;
     --gold-wash: #2b2417;
     --night: #050506;
+    color-scheme: dark;
   }
+}
+
+:root[data-theme="dark"] {
+  --paper: #0e0e0f;
+  --paper-deep: #161618;
+  --ink: #f5f4f0;
+  --ink-soft: #a8a59e;
+  --ink-faint: #8a877f;
+  --rule: #2f2f33;
+  --gold-text: #dcbf7e;
+  --gold-wash: #2b2417;
+  --night: #050506;
+  color-scheme: dark;
 }
 
 *,
@@ -151,17 +166,72 @@ p {
 }
 
 @media (prefers-color-scheme: dark) {
-  .brand .word-light {
+  :root:not([data-theme="light"]) .brand .word-light {
     display: none;
   }
 
-  .brand .word-dark {
+  :root:not([data-theme="light"]) .brand .word-dark {
     display: block;
   }
 }
 
+:root[data-theme="dark"] .brand .word-light {
+  display: none;
+}
+
+:root[data-theme="dark"] .brand .word-dark {
+  display: block;
+}
+
+/* Theme switch: shows the moon in light, the sun in dark. */
+
+.theme {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--rule);
+  background: transparent;
+  color: var(--ink);
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.theme:hover {
+  background: var(--paper-deep);
+}
+
+.theme svg {
+  width: 20px;
+  height: 20px;
+}
+
+.theme .sun {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme .sun {
+    display: block;
+  }
+
+  :root:not([data-theme="light"]) .theme .moon {
+    display: none;
+  }
+}
+
+:root[data-theme="dark"] .theme .sun {
+  display: block;
+}
+
+:root[data-theme="dark"] .theme .moon {
+  display: none;
+}
+
 .top nav {
   display: flex;
+  align-items: center;
   gap: 6px;
 }
 
@@ -446,6 +516,7 @@ p {
 .screens {
   background: var(--night);
   color: var(--night-text);
+  border-block: 1px solid #222225;
   padding-block: clamp(64px, 9vw, 120px);
 }
 

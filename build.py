@@ -35,6 +35,8 @@ COPY = {
         "other_lang": "العربية",
         "other_href": "ar/",
         "privacy": "Privacy",
+        "to_dark": "Switch to dark appearance",
+        "to_light": "Switch to light appearance",
         "h1": "Gold prices, with the math shown.",
         "lede": (
             "Auvra follows the international spot price and works out what it means "
@@ -102,6 +104,8 @@ COPY = {
         "other_lang": "English",
         "other_href": "../",
         "privacy": "الخصوصية",
+        "to_dark": "التبديل إلى المظهر الداكن",
+        "to_light": "التبديل إلى المظهر الفاتح",
         "h1": "أسعار الذهب، والحساب أمامك.",
         "lede": (
             "يتابع Auvra سعر الذهب الفوري العالمي، ويحسب ما يعادله للغرام في الإمارات "
@@ -171,6 +175,7 @@ def page(lang: str) -> str:
     url = SITE if lang == "en" else SITE + "ar/"
     direction = "ltr" if lang == "en" else "rtl"
     shots = f"{root}assets/screens/{lang}/"
+    dark_shots = f"{root}assets/screens/{lang}-dark/"
     email_link = f'<a href="mailto:{EMAIL}">{EMAIL}</a>'
     prev_arrow, next_arrow = ("←", "→") if lang == "en" else ("→", "←")
 
@@ -186,7 +191,7 @@ def page(lang: str) -> str:
 
     gallery = "\n".join(
         f"""        <li>
-          <div class="phone"><img src="{shots}{name}.webp" width="1320" height="2868" loading="lazy" decoding="async" alt="{e(c["screen_alt"].format(name=c["screens"][name][0]))}"></div>
+          <div class="phone"><img src="{shots}{name}.webp" data-dark="{dark_shots}{name}.webp" width="1320" height="2868" loading="lazy" decoding="async" alt="{e(c["screen_alt"].format(name=c["screens"][name][0]))}"></div>
           <h3>{e(c["screens"][name][0])}</h3>
           <p>{e(c["screens"][name][1])}</p>
         </li>"""
@@ -229,6 +234,12 @@ def page(lang: str) -> str:
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300..700&display=swap">
   <link rel="stylesheet" href="{root}assets/site.css">
+  <script>
+    try {{
+      var saved = localStorage.getItem("auvra-theme");
+      if (saved === "light" || saved === "dark") document.documentElement.dataset.theme = saved;
+    }} catch (error) {{}}
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">{e(c["skip"])}</a>
@@ -240,6 +251,10 @@ def page(lang: str) -> str:
     </a>
     <nav>
       <a class="privacy" href="{PRIVACY[lang]}">{e(c["privacy"])}</a>
+      <button class="theme" type="button" data-to-dark="{e(c["to_dark"])}" data-to-light="{e(c["to_light"])}" aria-label="{e(c["to_dark"])}">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+      </button>
       <a class="lang" href="{c["other_href"]}" hreflang="{'ar' if lang == 'en' else 'en'}" lang="{'ar' if lang == 'en' else 'en'}">{e(c["other_lang"])}</a>
     </nav>
   </header>
@@ -255,8 +270,8 @@ def page(lang: str) -> str:
         </div>
       </div>
       <div class="stage">
-        <div class="phone back"><img src="{shots}markets.webp" width="1320" height="2868" alt="{e(c["hero_alt_back"])}"></div>
-        <div class="phone front"><img src="{shots}home.webp" width="1320" height="2868" alt="{e(c["hero_alt_front"])}" fetchpriority="high"></div>
+        <div class="phone back"><img src="{shots}markets.webp" data-dark="{dark_shots}markets.webp" width="1320" height="2868" alt="{e(c["hero_alt_back"])}"></div>
+        <div class="phone front"><img src="{shots}home.webp" data-dark="{dark_shots}home.webp" width="1320" height="2868" alt="{e(c["hero_alt_front"])}" fetchpriority="high"></div>
       </div>
     </section>
 
@@ -318,6 +333,35 @@ def page(lang: str) -> str:
   </footer>
 
   <script>
+    (function () {{
+      var root = document.documentElement;
+      var button = document.querySelector(".theme");
+      var system = window.matchMedia("(prefers-color-scheme: dark)");
+      function current() {{
+        return root.dataset.theme || (system.matches ? "dark" : "light");
+      }}
+      function apply() {{
+        var dark = current() === "dark";
+        document.querySelectorAll("img[data-dark]").forEach(function (img) {{
+          if (!img.dataset.light) img.dataset.light = img.getAttribute("src");
+          var next = dark ? img.dataset.dark : img.dataset.light;
+          if (img.getAttribute("src") !== next) img.setAttribute("src", next);
+        }});
+        document.querySelectorAll('meta[name="theme-color"]').forEach(function (meta) {{
+          meta.content = dark ? "#0e0e0f" : "#faf9f6";
+        }});
+        button.setAttribute("aria-label", dark ? button.dataset.toLight : button.dataset.toDark);
+      }}
+      button.addEventListener("click", function () {{
+        var next = current() === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try {{ localStorage.setItem("auvra-theme", next); }} catch (error) {{}}
+        apply();
+      }});
+      system.addEventListener("change", apply);
+      apply();
+    }})();
+
     (function () {{
       var gallery = document.querySelector(".gallery");
       var buttons = document.querySelectorAll(".scroller-buttons button");

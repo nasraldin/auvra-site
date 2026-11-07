@@ -24,6 +24,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300..700&display=swap">
   <link rel="stylesheet" href="assets/site.css">
+  <script>
+    try {
+      var saved = localStorage.getItem("auvra-theme");
+      if (saved === "light" || saved === "dark") document.documentElement.dataset.theme = saved;
+    } catch (error) {}
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -35,6 +41,10 @@
     </a>
     <nav>
       <a class="privacy" href="https://auvra-proxy.app-services-671.workers.dev/legal/privacy">Privacy</a>
+      <button class="theme" type="button" data-to-dark="Switch to dark appearance" data-to-light="Switch to light appearance" aria-label="Switch to dark appearance">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 14.2A8.5 8.5 0 0 1 9.8 3.5a8.5 8.5 0 1 0 10.7 10.7Z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></svg>
+      </button>
       <a class="lang" href="ar/" hreflang="ar" lang="ar">العربية</a>
     </nav>
   </header>
@@ -50,8 +60,8 @@
         </div>
       </div>
       <div class="stage">
-        <div class="phone back"><img src="assets/screens/en/markets.webp" width="1320" height="2868" alt="Auvra Markets screen listing karats in three markets"></div>
-        <div class="phone front"><img src="assets/screens/en/home.webp" width="1320" height="2868" alt="Auvra Home screen showing the spot price and followed markets" fetchpriority="high"></div>
+        <div class="phone back"><img src="assets/screens/en/markets.webp" data-dark="assets/screens/en-dark/markets.webp" width="1320" height="2868" alt="Auvra Markets screen listing karats in three markets"></div>
+        <div class="phone front"><img src="assets/screens/en/home.webp" data-dark="assets/screens/en-dark/home.webp" width="1320" height="2868" alt="Auvra Home screen showing the spot price and followed markets" fetchpriority="high"></div>
       </div>
     </section>
 
@@ -102,32 +112,32 @@
       </div>
       <ul class="gallery" tabindex="0" aria-label="Inside the app">
         <li>
-          <div class="phone"><img src="assets/screens/en/home.webp" width="1320" height="2868" loading="lazy" decoding="async" alt="Auvra Home screen"></div>
+          <div class="phone"><img src="assets/screens/en/home.webp" data-dark="assets/screens/en-dark/home.webp" width="1320" height="2868" loading="lazy" decoding="async" alt="Auvra Home screen"></div>
           <h3>Home</h3>
           <p>The spot price and the markets you follow, on one page.</p>
         </li>
         <li>
-          <div class="phone"><img src="assets/screens/en/markets.webp" width="1320" height="2868" loading="lazy" decoding="async" alt="Auvra Markets screen"></div>
+          <div class="phone"><img src="assets/screens/en/markets.webp" data-dark="assets/screens/en-dark/markets.webp" width="1320" height="2868" loading="lazy" decoding="async" alt="Auvra Markets screen"></div>
           <h3>Markets</h3>
           <p>Common karats in three markets, per gram, ounce, tola or kilogram.</p>
         </li>
         <li>
-          <div class="phone"><img src="assets/screens/en/details.webp" width="1320" height="2868" loading="lazy" decoding="async" alt="Auvra Market details screen"></div>
+          <div class="phone"><img src="assets/screens/en/details.webp" data-dark="assets/screens/en-dark/details.webp" width="1320" height="2868" loading="lazy" decoding="async" alt="Auvra Market details screen"></div>
           <h3>Market details</h3>
           <p>Price history from one day to the full record.</p>
         </li>
         <li>
-          <div class="phone"><img src="assets/screens/en/compare.webp" width="1320" height="2868" loading="lazy" decoding="async" alt="Auvra Compare screen"></div>
+          <div class="phone"><img src="assets/screens/en/compare.webp" data-dark="assets/screens/en-dark/compare.webp" width="1320" height="2868" loading="lazy" decoding="async" alt="Auvra Compare screen"></div>
           <h3>Compare</h3>
           <p>Up to four markets on the same purity, unit and currency.</p>
         </li>
         <li>
-          <div class="phone"><img src="assets/screens/en/currencies.webp" width="1320" height="2868" loading="lazy" decoding="async" alt="Auvra Currencies screen"></div>
+          <div class="phone"><img src="assets/screens/en/currencies.webp" data-dark="assets/screens/en-dark/currencies.webp" width="1320" height="2868" loading="lazy" decoding="async" alt="Auvra Currencies screen"></div>
           <h3>Currencies</h3>
           <p>Gold per gram in dozens of currencies.</p>
         </li>
         <li>
-          <div class="phone"><img src="assets/screens/en/calculator.webp" width="1320" height="2868" loading="lazy" decoding="async" alt="Auvra Calculator screen"></div>
+          <div class="phone"><img src="assets/screens/en/calculator.webp" data-dark="assets/screens/en-dark/calculator.webp" width="1320" height="2868" loading="lazy" decoding="async" alt="Auvra Calculator screen"></div>
           <h3>Calculator</h3>
           <p>Weight, karat, premium, making charges and VAT, with every step shown.</p>
         </li>
@@ -188,6 +198,35 @@
   </footer>
 
   <script>
+    (function () {
+      var root = document.documentElement;
+      var button = document.querySelector(".theme");
+      var system = window.matchMedia("(prefers-color-scheme: dark)");
+      function current() {
+        return root.dataset.theme || (system.matches ? "dark" : "light");
+      }
+      function apply() {
+        var dark = current() === "dark";
+        document.querySelectorAll("img[data-dark]").forEach(function (img) {
+          if (!img.dataset.light) img.dataset.light = img.getAttribute("src");
+          var next = dark ? img.dataset.dark : img.dataset.light;
+          if (img.getAttribute("src") !== next) img.setAttribute("src", next);
+        });
+        document.querySelectorAll('meta[name="theme-color"]').forEach(function (meta) {
+          meta.content = dark ? "#0e0e0f" : "#faf9f6";
+        });
+        button.setAttribute("aria-label", dark ? button.dataset.toLight : button.dataset.toDark);
+      }
+      button.addEventListener("click", function () {
+        var next = current() === "dark" ? "light" : "dark";
+        root.dataset.theme = next;
+        try { localStorage.setItem("auvra-theme", next); } catch (error) {}
+        apply();
+      });
+      system.addEventListener("change", apply);
+      apply();
+    })();
+
     (function () {
       var gallery = document.querySelector(".gallery");
       var buttons = document.querySelectorAll(".scroller-buttons button");

@@ -6,7 +6,8 @@ Marketing page for [Auvra](https://nasraldin.github.io/auvra-site/), a gold pric
 
 - Copy for both languages lives in `build.py`. Change it there, then run `python3 -I build.py` to regenerate `index.html` and `ar/index.html`. Do not edit the HTML by hand.
 - Styles: `assets/site.css`. Colors follow the app's design tokens.
-- Screenshots: capture them with `scripts/app-store-screenshots.sh` in the app repo, then run `tools/import-screens.sh <app-repo>/build/app-store-screenshots`.
+- Screenshots: capture both sets in the app repo with `scripts/app-store-screenshots.sh` and `scripts/app-store-screenshots.sh "iPhone 18 Pro Max" dark`, then run `tools/import-screens.sh <app-repo>/build/app-store-screenshots` and `tools/import-screens.sh <app-repo>/build/app-store-screenshots-dark dark`.
+- Theme: follows the system until the visitor uses the switch in the header; the choice is saved in the browser.
 
 ## Rules
 
