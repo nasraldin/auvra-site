@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Auvra: gold prices, with the math shown</title>
+  <meta name="description" content="Auvra follows the international gold spot price and works out what it means per gram in the UAE, Egypt and Saudi Arabia. Free for iPhone, in English and Arabic.">
+  <link rel="canonical" href="https://nasraldin.github.io/auvra-site/">
+  <link rel="alternate" hreflang="en" href="https://nasraldin.github.io/auvra-site/">
+  <link rel="alternate" hreflang="ar" href="https://nasraldin.github.io/auvra-site/ar/">
+  <link rel="alternate" hreflang="x-default" href="https://nasraldin.github.io/auvra-site/">
+  <meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e0e0f" media="(prefers-color-scheme: dark)">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Auvra: gold prices, with the math shown">
+  <meta property="og:description" content="Auvra follows the international gold spot price and works out what it means per gram in the UAE, Egypt and Saudi Arabia. Free for iPhone, in English and Arabic.">
+  <meta property="og:url" content="https://nasraldin.github.io/auvra-site/">
+  <meta property="og:image" content="https://nasraldin.github.io/auvra-site/assets/og-en.png">
+  <meta property="og:locale" content="en_US">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300..700&display=swap">
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="wrap top">
+    <a class="brand" href="./" aria-label="Auvra">
+      <img class="mark" src="assets/mark.svg" width="34" height="34" alt="">
+      <img class="word word-light" src="assets/auvra-wordmark-en-ink.svg" alt="" height="20">
+      <img class="word word-dark" src="assets/auvra-wordmark-en-paper.svg" alt="" height="20">
+    </a>
+    <nav>
+      <a class="privacy" href="https://auvra-proxy.app-services-671.workers.dev/legal/privacy">Privacy</a>
+      <a class="lang" href="ar/" hreflang="ar" lang="ar">العربية</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="wrap hero">
+      <div>
+        <h1>Gold prices, with the math shown.</h1>
+        <p class="lede">Auvra follows the international spot price and works out what it means per gram in the UAE, Egypt and Saudi Arabia. Every price is labelled with its type and the time it was updated.</p>
+        <div class="availability">
+          <span class="soon"><img src="assets/app-icon.png" width="32" height="32" alt="">Coming soon to the App Store</span>
+          <small>Free for iPhone. No account, no ads.</small>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="phone back"><img src="assets/screens/en/markets.webp" width="1320" height="2868" alt="Auvra Markets screen listing karats in three markets"></div>
+        <div class="phone front"><img src="assets/screens/en/home.webp" width="1320" height="2868" alt="Auvra Home screen showing the spot price and followed markets" fetchpriority="high"></div>
+      </div>
+    </section>
+
+    <section class="wrap assay" aria-labelledby="assay-title">
+      <div class="copy">
+        <h2 id="assay-title">One spot price, every karat.</h2>
+        <p>Local prices start from the international spot price, convert it with the exchange rate, then apply the purity of the karat. Auvra tags them Spot-equivalent, because a shop adds its own premium and making charges.</p>
+        <p class="formula"><span>Spot price</span> <i aria-hidden="true">×</i> <span>Exchange rate</span> <i aria-hidden="true">×</i> <span>Purity</span></p>
+      </div>
+      <ul class="bars" aria-label="Purity of each karat">
+          <li class="bar">
+            <span class="karat">24K</span>
+            <span class="track" aria-hidden="true"><span class="fill" style="--fine: 99.9%"></span></span>
+            <span class="value">999</span>
+            <span class="unit">parts gold in 1,000</span>
+          </li>
+          <li class="bar">
+            <span class="karat">22K</span>
+            <span class="track" aria-hidden="true"><span class="fill" style="--fine: 91.6%"></span></span>
+            <span class="value">916</span>
+            <span class="unit">parts gold in 1,000</span>
+          </li>
+          <li class="bar">
+            <span class="karat">21K</span>
+            <span class="track" aria-hidden="true"><span class="fill" style="--fine: 87.5%"></span></span>
+            <span class="value">875</span>
+            <span class="unit">parts gold in 1,000</span>
+          </li>
+          <li class="bar">
+            <span class="karat">18K</span>
+            <span class="track" aria-hidden="true"><span class="fill" style="--fine: 75.0%"></span></span>
+            <span class="value">750</span>
+            <span class="unit">parts gold in 1,000</span>
+          </li>
+      </ul>
+    </section>
+
+    <section class="screens" aria-labelledby="screens-title">
+      <div class="wrap head">
+        <div>
+          <h2 id="screens-title">Inside the app</h2>
+          <p>Four tabs: Home, Markets, Currencies and Settings. Compare and the calculator are one tap from Home.</p>
+        </div>
+        <div class="scroller-buttons">
+          <button type="button" data-step="-1" aria-label="Previous screens">←</button>
+          <button type="button" data-step="1" aria-label="Next screens">→</button>
+        </div>
+      </div>
+      <ul class="gallery" tabindex="0" aria-label="Inside the app">
+        <li>
+          <div class="phone"><img src="assets/screens/en/home.webp" width="1320" height="2868" loading="lazy" decoding="async" alt="Auvra Home screen"></div>
+          <h3>Home</h3>
+          <p>The spot price and the markets you follow, on one page.</p>
+        </li>
+        <li>
+          <div class="phone"><img src="assets/screens/en/markets.webp" width="1320" height="2868" loading="lazy" decoding="async" alt="Auvra Markets screen"></div>
+          <h3>Markets</h3>
+          <p>Common karats in three markets, per gram, ounce, tola or kilogram.</p>
+        </li>
+        <li>
+          <div class="phone"><img src="assets/screens/en/details.webp" width="1320" height="2868" loading="lazy" decoding="async" alt="Auvra Market details screen"></div>
+          <h3>Market details</h3>
+          <p>Price history from one day to the full record.</p>
+        </li>
+        <li>
+          <div class="phone"><img src="assets/screens/en/compare.webp" width="1320" height="2868" loading="lazy" decoding="async" alt="Auvra Compare screen"></div>
+          <h3>Compare</h3>
+          <p>Up to four markets on the same purity, unit and currency.</p>
+        </li>
+        <li>
+          <div class="phone"><img src="assets/screens/en/currencies.webp" width="1320" height="2868" loading="lazy" decoding="async" alt="Auvra Currencies screen"></div>
+          <h3>Currencies</h3>
+          <p>Gold per gram in dozens of currencies.</p>
+        </li>
+        <li>
+          <div class="phone"><img src="assets/screens/en/calculator.webp" width="1320" height="2868" loading="lazy" decoding="async" alt="Auvra Calculator screen"></div>
+          <h3>Calculator</h3>
+          <p>Weight, karat, premium, making charges and VAT, with every step shown.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="wrap promises" aria-labelledby="promises-title">
+      <h2 id="promises-title">What you can count on</h2>
+      <ul>
+        <li>
+          <h3>Every price says what it is</h3>
+          <p>Spot or Spot-equivalent. A calculated price is never shown as a shop price.</p>
+        </li>
+        <li>
+          <h3>Every price says when</h3>
+          <p>The update time is always on screen. A closed market, old data or no connection is shown plainly.</p>
+        </li>
+        <li>
+          <h3>Nothing to sign up for</h3>
+          <p>No account, no ads, no tracking. Your favorites and settings stay on your iPhone.</p>
+        </li>
+        <li>
+          <h3>Widgets that show their time</h3>
+          <p>Home Screen and Lock Screen widgets always show when they were last updated.</p>
+        </li>
+        <li>
+          <h3>Your units, your currency</h3>
+          <p>Gram, troy ounce, tola or kilogram, in the currency you choose.</p>
+        </li>
+        <li>
+          <h3>Made for Arabic and English</h3>
+          <p>Full right-to-left layout, Light and Dark appearance, Dynamic Type and VoiceOver.</p>
+        </li>
+      </ul>
+    </section>
+
+    <section class="closing" aria-labelledby="closing-title">
+      <div class="wrap">
+        <img src="assets/app-icon.png" width="168" height="168" alt="">
+        <div>
+          <h2 id="closing-title">Auvra is on its way to the App Store.</h2>
+          <p>Free, with no in-app purchases. Questions? Write to <a href="mailto:info@nasraldin.com">info@nasraldin.com</a>.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <div class="row">
+      <nav>
+        <a href="https://auvra-proxy.app-services-671.workers.dev/support">Support</a>
+        <a href="https://auvra-proxy.app-services-671.workers.dev/legal/privacy">Privacy policy</a>
+        <a href="ar/" lang="ar">العربية</a>
+      </nav>
+      <span dir="ltr">© 2026 Nasr Aldin</span>
+    </div>
+    <p class="fine">Prices are for information only and are not investment advice. Spot-equivalent prices are calculations, not shop prices. Spot price data from gold-api.com. Rates by Exchangerate.dev.</p>
+  </footer>
+
+  <script>
+    (function () {
+      var gallery = document.querySelector(".gallery");
+      var buttons = document.querySelectorAll(".scroller-buttons button");
+      if (!gallery || !buttons.length) return;
+      var rtl = document.documentElement.dir === "rtl";
+      function update() {
+        var max = gallery.scrollWidth - gallery.clientWidth;
+        var pos = Math.abs(gallery.scrollLeft);
+        buttons[0].disabled = pos <= 2;
+        buttons[1].disabled = pos >= max - 2;
+      }
+      buttons.forEach(function (button) {
+        button.addEventListener("click", function () {
+          var step = Number(button.dataset.step) * gallery.clientWidth * 0.8;
+          gallery.scrollBy({ left: rtl ? -step : step, behavior: "smooth" });
+        });
+      });
+      gallery.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+      update();
+    })();
+  </script>
+</body>
+</html>
