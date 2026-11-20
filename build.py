@@ -8,6 +8,7 @@ from html import escape
 from pathlib import Path
 
 SITE = "https://nasraldin.github.io/auvra-site/"
+APP_STORE = "https://apps.apple.com/ae/app/auvra-gold-prices-markets/id6831941253"
 PRIVACY = {
     "en": "https://auvra-proxy.app-services-671.workers.dev/legal/privacy",
     "ar": "https://auvra-proxy.app-services-671.workers.dev/legal/privacy/ar",
@@ -43,8 +44,8 @@ COPY = {
             "per gram in the UAE, Egypt and Saudi Arabia. Every price is labelled with "
             "its type and the time it was updated."
         ),
-        "soon": "Coming soon to the App Store",
-        "soon_note": "Free for iPhone. No account, no ads.",
+        "download": "Download on the App Store",
+        "download_note": "Free for iPhone. No account, no ads.",
         "hero_alt_front": "Auvra Home screen showing the spot price and followed markets",
         "hero_alt_back": "Auvra Markets screen listing karats in three markets",
         "assay_h2": "One spot price, every karat.",
@@ -82,7 +83,7 @@ COPY = {
             ("Your units, your currency", "Gram, troy ounce, tola or kilogram, in the currency you choose."),
             ("Made for Arabic and English", "Full right-to-left layout, Light and Dark appearance, Dynamic Type and VoiceOver."),
         ],
-        "closing_h2": "Auvra is on its way to the App Store.",
+        "closing_h2": "Auvra is available for iPhone.",
         "closing_p": "Free, with no in-app purchases. Questions? Write to {email}.",
         "support": "Support",
         "privacy_policy": "Privacy policy",
@@ -111,8 +112,8 @@ COPY = {
             "يتابع Auvra سعر الذهب الفوري العالمي، ويحسب ما يعادله للغرام في الإمارات "
             "ومصر والسعودية. ويظهر مع كل سعر نوعه ووقت آخر تحديث له."
         ),
-        "soon": "قريبا على App Store",
-        "soon_note": "مجاني على iPhone، بلا حساب ولا إعلانات.",
+        "download": "حمّل التطبيق من App Store",
+        "download_note": "مجاني على iPhone، بلا حساب ولا إعلانات.",
         "hero_alt_front": "شاشة الرئيسية في Auvra مع السعر الفوري والأسواق المتابعة",
         "hero_alt_back": "شاشة الأسواق في Auvra مع العيارات في ثلاثة أسواق",
         "assay_h2": "سعر فوري واحد لكل العيارات.",
@@ -150,7 +151,7 @@ COPY = {
             ("بوحداتك وعملتك", "الغرام أو الأونصة أو التولة أو الكيلوغرام، بالعملة التي تختارها."),
             ("للعربية والإنجليزية", "اتجاه كامل من اليمين إلى اليسار، ومظهر فاتح وداكن، ودعم VoiceOver وأحجام الخط الكبيرة."),
         ],
-        "closing_h2": "Auvra في طريقه إلى App Store.",
+        "closing_h2": "أوفرا متاح الآن على iPhone.",
         "closing_p": "مجاني، بلا مشتريات داخل التطبيق. للاستفسار: {email}",
         "support": "الدعم",
         "privacy_policy": "سياسة الخصوصية",
@@ -265,8 +266,8 @@ def page(lang: str) -> str:
         <h1>{e(c["h1"])}</h1>
         <p class="lede">{e(c["lede"])}</p>
         <div class="availability">
-          <span class="soon"><img src="{root}assets/app-icon.png" width="32" height="32" alt="">{e(c["soon"])}</span>
-          <small>{e(c["soon_note"])}</small>
+          <a class="app-store-cta" href="{e(APP_STORE)}"><img src="{root}assets/app-icon.png" width="32" height="32" alt="">{e(c["download"])}</a>
+          <small>{e(c["download_note"])}</small>
         </div>
       </div>
       <div class="stage">
@@ -315,6 +316,7 @@ def page(lang: str) -> str:
         <div>
           <h2 id="closing-title">{e(c["closing_h2"])}</h2>
           <p>{e(c["closing_p"]).format(email=email_link)}</p>
+          <a class="app-store-cta" href="{e(APP_STORE)}">{e(c["download"])}</a>
         </div>
       </div>
     </section>
