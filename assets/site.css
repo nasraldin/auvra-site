@@ -295,23 +295,24 @@ p {
   gap: 14px 20px;
 }
 
-.soon {
+.app-store-cta {
   display: inline-flex;
   align-items: center;
   gap: 12px;
   background: var(--ink);
   color: var(--paper);
   border-radius: 14px;
-  padding: 12px 20px 12px 14px;
+  padding: 12px 20px;
   font-weight: 500;
   min-height: 56px;
+  text-decoration: none;
 }
 
-:lang(ar) .soon {
-  padding: 12px 14px 12px 20px;
+.app-store-cta:hover {
+  text-decoration: underline;
 }
 
-.soon img {
+.app-store-cta img {
   width: 32px;
   height: 32px;
   border-radius: 8px;
@@ -657,6 +658,10 @@ p {
 .closing p {
   margin-top: 14px;
   color: var(--ink-soft);
+}
+
+.closing .app-store-cta {
+  margin-top: 20px;
 }
 
 /* Footer */
